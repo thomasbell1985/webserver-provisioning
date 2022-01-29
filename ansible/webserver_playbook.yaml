@@ -1,0 +1,20 @@
+---
+- name: Add known hosts
+  hosts: 127.0.0.1
+  connection: local
+  become: false
+  tasks: 
+    - name: Write the new ec2 instance host key to known hosts
+      shell: "ssh-keyscan -H {{ inventory_hostname }} >> ~/.ssh/known_hosts"
+- name: My Playbook
+  hosts: webservers
+  become: true
+  # delaying this until after we add hosts to known hosts
+  # gather_facts: no
+  tasks:
+    # this will ensure the tasks get gathered before we execute the tasks and roles below
+    # but only after we have add the inventory to known hosts
+    - name: Gathering facts
+      setup:
+  roles:
+    - role: "nginx"

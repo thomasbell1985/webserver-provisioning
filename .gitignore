@@ -1,0 +1,4 @@
+*.tfvars
+*.ini
+*.tfstate
+terraform/.terraform/**/*
