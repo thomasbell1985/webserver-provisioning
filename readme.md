@@ -28,6 +28,13 @@ profile="default" # default "default"
 profile="us-west-1" # default "region"
 ```
 
+You will also need to initialize the terraform providers:
+
+```
+cd terraform
+terraform init
+```
+
 The file name should be my.tfvars
 
 ```sh
@@ -67,6 +74,12 @@ terraform -chdir=terraform/  output -json | jq "{webservers:.webserver_ips.value
 
 # use curl to ensure everything works:
 curl http://3.234.254.92 # use the ips created from above.
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+........
 ```
 
 To destroy the resources you can simply call destroy from the terraform directory:
@@ -88,6 +101,11 @@ Or you can just run the build.sh file as outlined above. The reason for this is 
 
 ## Security
 
-By default the build.sh will disable strict host checking when executing the ansible command. This will ensure you won't need to manually add the hosts to your known_hosts file. 
+By default the build.sh will disable strict host checking when executing the ansible command. This will ensure you won't need to manually add the hosts to your known_hosts file.
 
 If you wish to run with host checking, then you can run each step independently and manually add the host to your known hosts before executing the ansible playbook.
+
+## TODO:
+
+1. Add application load balancer to balance traffic to instances
+1. Add autoscaling group
