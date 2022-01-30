@@ -82,6 +82,7 @@ resource "aws_instance" "web_server" {
   vpc_security_group_ids = [aws_security_group.webserver_security_group.id]
   tags = {
     Name = "webserver-subnet-${each.value}"
+    Type = "webserver"
   }
   key_name = aws_key_pair.ssh_key.key_name
 }

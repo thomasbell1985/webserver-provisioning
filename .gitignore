@@ -2,3 +2,6 @@
 *.ini
 *.tfstate
 terraform/.terraform/**/*
+*.hcl
+*.tfstate.backup
+data.json
